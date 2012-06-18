@@ -18,10 +18,10 @@ class MoviesController < ApplicationController
       @movies = Movie.where(:rating => @selected_ratings.keys)
     end
 
-    if @sort == :by_title then
+    if @sort == "title" then
       @movies = @movies.sort_by {|m| m.title}
     end
-    if @sort == :by_release_date then
+    if @sort == "release_date" then
       @movies = @movies.sort_by {|m| m.release_date}
     end	 
 
