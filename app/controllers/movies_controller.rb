@@ -10,8 +10,13 @@ class MoviesController < ApplicationController
     @sort = params[:sort]
     @all_ratings = Movie.ratings
 
+    debugger
+
     if params[:ratings]!=nil then
-      @selected_ratings = params[:ratings].keys
+      @selected_ratings = params[:ratings]
+      if not @selected_ratings.instance_of?(Array)then
+	@selected_ratings=@selected_ratings.keys
+      end
       @movies = Movie.where(:rating => @selected_ratings)
     else
       @selected_ratings = []
@@ -19,13 +24,12 @@ class MoviesController < ApplicationController
     end
 
     if @sort == "by_title" then
-      raise params[:ratings].inspect
       @movies = @movies.sort_by {|m| m.title}
     end
     if @sort == "by_release_date" then
-      raise params[:ratings].inspect
       @movies = @movies.sort_by {|m| m.release_date}
     end	 
+
   end
 
   def new
