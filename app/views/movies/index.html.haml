@@ -4,9 +4,11 @@
 %table#movies
   %thead
     %tr
-      %th <a id="title_header" href="movies?title_sort=true"> Movie Title </a>
+      %th{:class => (@sort == "by_title") ? "hilite" : false}
+        <a id="title_header" href="movies?sort=by_title"> Movie Title </a>
       %th Rating
-      %th <a id="release_date_header" href="movies?release_date_sort=true"> Release Date </a>
+      %th{:class => (@sort == "by_release_date") ? "hilite" : false}
+        <a id="release_date_header" href="movies?sort=by_release_date"> Release Date </a>
       %th More Info
   %tbody
     - @movies.each do |movie|
