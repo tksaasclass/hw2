@@ -7,16 +7,25 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
     @sort = params[:sort]
+    @all_ratings = Movie.ratings
+
+    if params[:ratings]!=nil then
+      @selected_ratings = params[:ratings].keys
+      @movies = Movie.where(:rating => @selected_ratings)
+    else
+      @selected_ratings = []
+      @movies = {}
+    end
+
     if @sort == "by_title" then
-      @movies=@movies.sort_by {|m| m.title}
-      params[:sort] = nil #reset for future index calls
+      raise params[:ratings].inspect
+      @movies = @movies.sort_by {|m| m.title}
     end
     if @sort == "by_release_date" then
-      @movies=@movies.sort_by {|m| m.release_date}
-      params[:sort] = nil # reset for future index calls
-    end
+      raise params[:ratings].inspect
+      @movies = @movies.sort_by {|m| m.release_date}
+    end	 
   end
 
   def new
