@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     @sort = params[:sort]
     @all_ratings = Movie.ratings
 
-    debugger
+#    debugger
 
     if params[:ratings]!=nil then
       @selected_ratings = params[:ratings]
