@@ -6,7 +6,7 @@
     %tr
       %th{:class => (@sort == "by_title") ? "hilite" : false}
         <a id="title_header"> 
-        = link_to 'Title', movies_path(:sort => "by_title")
+        = link_to 'Movie Title', movies_path(:sort => "by_title")
         </a>
       %th Rating
       %th{:class => (@sort == "by_release_date") ? "hilite" : false}
