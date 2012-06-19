@@ -15,16 +15,8 @@ class MoviesController < ApplicationController
       @movies = {}
     else
       @selected_ratings = params[:ratings]
-      @movies = Movie.where(:rating => @selected_ratings.keys)
+      @movies=Movie.find(:all, :conditions => {:rating => @selected_ratings.keys}, :order => @sort)
     end
-
-    if @sort == "title" then
-      @movies = @movies.sort_by {|m| m.title}
-    end
-    if @sort == "release_date" then
-      @movies = @movies.sort_by {|m| m.release_date}
-    end	 
-
   end
 
   def new
